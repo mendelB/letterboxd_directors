@@ -1,0 +1,5 @@
+<ul>
+	<% @directors.each do |director, films|  %>
+		<%= render partial: "director", locals: {director: director, films: films} %>
+	<% end %>
+</ul>
