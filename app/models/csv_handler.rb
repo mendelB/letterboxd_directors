@@ -17,6 +17,6 @@ class CSVHandler
 			next if body.length <= 20
 			sleep(10)
 		end
-		return directors
+		return directors.sort { |director, films| films.length }
 	end
 end
