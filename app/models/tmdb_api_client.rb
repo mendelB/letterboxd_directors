@@ -28,9 +28,10 @@ class TmdbAPIClient
 					img_url: "https://image.tmdb.org/t/p/w185/#{director["profile_path"]}",
 				},
 				movie: {
-					id: id,
-					name: movie_name,
-					img_url: movie_img_url
+					tmdb_id: id,
+					title: movie_name,
+					poster_img_url: movie_img_url,
+					year: movie_year
 				}
 			}
 		end
