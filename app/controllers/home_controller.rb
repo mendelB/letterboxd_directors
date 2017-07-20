@@ -4,16 +4,18 @@ class HomeController < ApplicationController
 
   def fetch_directors
   	@directors = CSVHandler.handle(params["file"])
-  	session[:id] = SessionCsv.last.session_id
+    session_data = SessionCache.create({session_id: params["file"].tempfile, data: @directors})
+  	session[:data_id] = session_data.session_id
+    binding.pry
   	render :directors
   end
 
   def directors
-  	if session[:id]
-  		@directors = CSVHandler.handle(SessionCsv.find_by({session_id: session[:id]}).csv, false)
-  		binding.pry
+  	if session[:data_id]
+  		@directors = SessionCache.find_by({session_id: session[:data_id]}).data
   	else
-  		redirect_to :root
+      flash[:notice] = "Please upload a CSV for data"
+      redirect_to :root 
   	end
   end
 end

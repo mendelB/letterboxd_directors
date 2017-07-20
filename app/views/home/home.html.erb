@@ -1,3 +1,9 @@
+<% if flash[:notice] %>
+	<div class="alert alert-danger">
+		<%= flash[:notice] %>
+	</div>
+ <% end %>
+ 
 <div class="container form-container">
 	<div class="main-form">
 		<%= form_tag fetch_directors_path, multipart: true, :class => 'form-inline'  do %>

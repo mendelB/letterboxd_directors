@@ -1,13 +1,7 @@
 require 'csv'
 class CSVHandler
-	def self.handle(csv, unread=true)
-		if unread
-			data = CSV.read(csv.path)
-			session_id = csv.tempfile
-			SessionCsv.create({csv: data, session_id: session_id})
-		else 
-			data = csv
-		end
+	def self.handle(csv)
+		data = CSV.read(csv.path)
 		headers = data[0]
 		body = data[1..-1]
 		directors = Hash.new { |hash, key| hash[key] = [] }
