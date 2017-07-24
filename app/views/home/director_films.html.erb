@@ -1,0 +1,13 @@
+<div class="director">
+	<%= image_tag @director[0].img_url, alt: @director[0].name, :class => 'director-img' %></br>
+	<%= content_tag :p, @director[0].name, :class => "lead director-link" %>
+	<strong><mark><%= @director[1].length %> Films</mark></strong>
+</div>
+</br>
+</br>
+<% @director[1].each do |film| %>
+	<div class="director director-list">
+		<%= image_tag film.poster_img_url, alt: film.title, :class => 'director-img' %></br>
+		<%= content_tag :p, film.title, :class => "lead director-link" %>
+	</div>
+<% end %>

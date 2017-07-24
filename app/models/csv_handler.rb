@@ -24,6 +24,7 @@ class CSVHandler
 						director.films << film
 						director.save
 					end
+					api_hit_counter += 1
 					sleep(10) && api_hit_counter = 0 if api_hit_counter >= 20 && body.length > 20
 				end
 			end
