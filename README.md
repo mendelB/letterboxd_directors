@@ -1,24 +1,5 @@
-# README
+# Letterboxd Directors
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+I love Letterboxd. I love seeing -in the Stats section- the list of directors whos work I've seen and the amount of their films I've logged. I just wanted to see them *all*, not just the top 10 or whatever. Wrote a simple lil Rails app that accepts the CSV of your Letterboxd exported data, and uses the TMDB API to compile the full list of directors. 
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+This is a super rough and tumble draft. Much work needed. Perhaps one day...
