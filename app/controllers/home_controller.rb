@@ -1,3 +1,4 @@
+require 'pry'
 class HomeController < ApplicationController
   def home
   end
@@ -20,10 +21,12 @@ class HomeController < ApplicationController
 
   def director_films
     if session[:data_id]
-      @directors = SessionCache.find_by({session_id: session[:data_id]}).data
-      @director = @directors.find do |director|
+      directors = SessionCache.find_by({session_id: session[:data_id]}).data
+      director_array = directors.find do |director|
         director[0].name === params[:director].gsub('+', ' ')
       end
+      @director = director_array[0]
+      @films = director_array[1].sort_by { |film| film.year.to_i }
       if @director
         render :director_films
       else
