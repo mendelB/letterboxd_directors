@@ -1,4 +1,5 @@
 require 'csv'
+
 class CSVHandler
 	def self.handle(csv)
 		data = CSV.read(csv.path)
@@ -19,7 +20,8 @@ class CSVHandler
 					result = TmdbAPIClient.get_director(name, year)
 					result.each do |r|
 						film = Film.find_or_create_by r[:movie]
-						director = Director.find_or_create_by r[:director]
+						director = Director.find_or_create_by({name: r[:director][:name]})
+						director.update r[:director]
 						directors[director] << film
 						director.films << film
 						director.save
