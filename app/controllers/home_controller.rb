@@ -5,14 +5,17 @@ class HomeController < ApplicationController
 
   def fetch_directors
   	@directors = CSVHandler.handle(params["file"])
-    session_data = SessionCache.create({session_id: params["file"].tempfile, data: @directors})
-  	session[:data_id] = session_data.session_id
+
+    cache_id = params["file"].tempfile.hash
+    Rails.cache.write(cache_id, @directors)
+    session[:cache_id] = cache_id
+
   	redirect_to :directors
   end
 
   def directors
-  	if session[:data_id]
-  		@directors = SessionCache.find_by({session_id: session[:data_id]}).data
+    if cache_id = session[:cache_id]
+      @directors = Rails.cache.fetch(cache_id)
   	else
       flash[:notice] = "Please upload a CSV for data"
       redirect_to :root 
@@ -20,8 +23,8 @@ class HomeController < ApplicationController
   end
 
   def director_films
-    if session[:data_id]
-      directors = SessionCache.find_by({session_id: session[:data_id]}).data
+    if session[:cache_id]
+      directors = Rails.cache.fetch(session[:cache_id])
       director_array = directors.find do |director|
         director[0].name === params[:director].gsub('+', ' ')
       end
