@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170720202320) do
+ActiveRecord::Schema.define(version: 20170720192634) do
 
   create_table "director_films", force: :cascade do |t|
     t.integer "director_id"
@@ -31,13 +31,6 @@ ActiveRecord::Schema.define(version: 20170720202320) do
     t.string "year"
     t.string "tmdb_id"
     t.string "poster_img_url"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "session_caches", force: :cascade do |t|
-    t.string "data"
-    t.string "session_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
