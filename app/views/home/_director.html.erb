@@ -1,5 +1,5 @@
 <div class="director director-list">
 	<%= image_tag director.img_url, alt: director.name, :class => 'director-img' %></br>
-	<%= link_to director.name, "/director-films/#{director.name}", :class => "lead director-link" %>
+	<%= link_to director.name, "/director-films/#{director.id}", :class => "lead director-link" %>
 	<strong><mark><%= films.length %> Films</mark></strong>
 </div>

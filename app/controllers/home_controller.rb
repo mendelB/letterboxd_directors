@@ -26,16 +26,18 @@ class HomeController < ApplicationController
     if session[:cache_id]
       directors = Rails.cache.fetch(session[:cache_id])
       director_array = directors.find do |director|
-        director[0].name === params[:director].gsub('+', ' ')
+        director[0].id === params[:director].to_i
       end
+
+      if !director_array
+        flash[:notice] = "No data for Director with the ID of #{params[:director]}!"
+        return redirect_to :root 
+      end
+
       @director = director_array[0]
       @films = director_array[1].sort_by { |film| film.year.to_i }
-      if @director
-        render :director_films
-      else
-        flash[:notice] = "No data for #{params[:director]}!"
-        redirect_to :root 
-      end
+      
+      render :director_films
     else
       flash[:notice] = "Please upload a CSV for data"
     end
