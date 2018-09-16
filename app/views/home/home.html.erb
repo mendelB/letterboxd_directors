@@ -9,7 +9,7 @@
 		<%= form_tag fetch_directors_path, multipart: true, :class => 'form-inline'  do %>
 		  <div class="form-group">
 		    <label for="file">Attach CSVs:</label>
-		    <%= file_field_tag :file %>
+		    <%= file_field_tag :file, :required => true%>
 		  	<input class="big-btn btn btn-lg btn-primary" type="submit" value="Get Directors" role="button">
 		  </div>
 		<% end %>
