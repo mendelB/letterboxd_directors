@@ -15,16 +15,14 @@ class HomeController < ApplicationController
 
   def directors
     if cache_id = session[:cache_id]
-      @directors = Rails.cache.fetch(cache_id)
-  	else
-      flash[:notice] = "Please upload a CSV for data"
-      redirect_to :root 
+      @directors = Rails.cache.fetch(cache_id) and return @directors
   	end
+    flash[:notice] = "Please upload a CSV for data"
+    redirect_to :root 
   end
 
   def director_films
-    if session[:cache_id]
-      directors = Rails.cache.fetch(session[:cache_id])
+    if session[:cache_id] and directors = Rails.cache.fetch(session[:cache_id])
       director_array = directors.find do |director|
         director[0].id === params[:director].to_i
       end
@@ -40,6 +38,7 @@ class HomeController < ApplicationController
       render :director_films
     else
       flash[:notice] = "Please upload a CSV for data"
+      return redirect_to :root 
     end
   end
 end
