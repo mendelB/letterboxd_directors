@@ -1,5 +1,5 @@
 # Letterboxd Directors
 
-I love Letterboxd. I love seeing -in the Stats section- the list of directors whos work I've seen and the amount of their films I've logged. I just wanted to see them *all*, not just the top 10 or whatever. Wrote a simple lil Rails app that accepts the CSV of your Letterboxd exported data, and uses the TMDB API to compile the full list of directors. 
+I love Letterboxd. I love the stats feature from pro users, seeing the list of directors who's work I've seen and the amount of their films that I've logged. The stats page is unfrotunately limited to the ~10 directors with the most logged films. Went & wrote this Rails app to scrape the Letterboxd site per provided username, compile a list of your logged films, and using TMDB API, compile the full list of your logged films per director. 
 
-This is a super rough and tumble draft. Much work needed. Perhaps one day...
+Would love to integrate this with their API if that's released to the public someday 🙏
