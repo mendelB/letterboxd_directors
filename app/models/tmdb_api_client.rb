@@ -4,7 +4,7 @@ require 'JSON'
 class TmdbAPIClient
 	SEARCH_BASE = "https://api.themoviedb.org/3/search/movie"
 	SEARCH_PERSON_BASE = "https://api.themoviedb.org/3/search/person"
-	API_KEY = "?api_key=#{ENV['API_KEY']}"
+	API_KEY = "?api_key=#{ENV['TMDB_API_KEY']}"
 	MOVIE_BASE = "https://api.themoviedb.org/3/movie/"
 
 	def self.get_director(director_name)
