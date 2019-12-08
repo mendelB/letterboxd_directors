@@ -21,7 +21,7 @@ class HomeController < ApplicationController
         return
       end
     end
-    flash[:notice] = "Please upload a CSV for data"
+    flash[:notice] = "No data found for this user. Please enter your Letterboxd username."
     redirect_to :root 
   end
 
@@ -38,7 +38,7 @@ class HomeController < ApplicationController
       
       render :director_films
     else
-      flash[:notice] = "Please upload a CSV for data"
+      flash[:notice] = "No data found for this user. Please enter your Letterboxd username."
       return redirect_to :root 
     end
   end
