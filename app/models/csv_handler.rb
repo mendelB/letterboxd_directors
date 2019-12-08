@@ -166,7 +166,7 @@ class CSVHandler
 					user.films << film
 
 					# Grab the list of directors.
-					director_nodes = header.css('a[itemprop=director] [itemprop=name]')
+					director_nodes = header.css('a[href^="/director/"]')
 
 					director_nodes.each do |director_node|
 						director_name = director_node.text
