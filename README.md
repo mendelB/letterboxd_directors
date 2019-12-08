@@ -12,7 +12,7 @@ $ bundle install
 $ rails s
 ```
 
-🖥 Visit `http://localhost:3000`.
-⌨️  Enter Letterboxd username & submit form.
-📊 The scraping takes some time, see progress log in the command line.
-🎁 You'll eventually be redirected to your full stat list of directors.
+- 🖥 Visit `http://localhost:3000`.
+- ⌨️  Enter Letterboxd username & submit form.
+- 📊 The scraping takes some time, see progress log in the command line.
+- 🎁 You'll eventually be redirected to your full stat list of directors.
