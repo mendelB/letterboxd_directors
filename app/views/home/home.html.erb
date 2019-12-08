@@ -3,13 +3,15 @@
 		<%= flash[:notice] %>
 	</div>
  <% end %>
+
  
-<div class="container form-container">
-	<div class="main-form">
-		<%= form_tag fetch_directors_path, multipart: true, :class => 'form-inline'  do %>
+<div class="container form-container mt-5">
+	<h1 class="p-5 mx-auto">🎬 Welcome to Letterboxd Directors 🎬</h1>
+	<div class="main-form w-50 mx-auto">
+		<%= form_tag fetch_directors_path, multipart: true  do %>
 		  <div class="form-group">
-		    <label for="username">Letterboxd Username:</label>
-		    <%= text_field_tag :username, nil, :required => true, :class => 'm-1' %>
+		    <label for="username">Please Enter Your Letterboxd Username:</label>
+		    <%= text_field_tag :username, nil, :required => true, :class => 'm-1 form-control', :autofocus => true %>
 		  	<input class="big-btn btn btn-lg btn-primary m-3" type="submit" value="Get Directors" role="button">
 		  </div>
 		<% end %>
