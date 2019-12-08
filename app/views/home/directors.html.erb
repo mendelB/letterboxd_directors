@@ -1,5 +1,7 @@
-<ul>
-	<% @directors.each do |director, films|  %>
-		<%= render partial: "director", locals: {director: director, films: films} %>
+<h1 class="directors-header"><strong><mark><%= @directors.length %></mark></strong> Directors</h1>
+
+<ul class="director-list">
+	<% @directors.each do |director|  %>
+		<%= render partial: "director", locals: director %>
 	<% end %>
 </ul>

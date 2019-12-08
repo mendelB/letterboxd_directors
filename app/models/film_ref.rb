@@ -1,0 +1,2 @@
+class FilmRef < ApplicationRecord
+end

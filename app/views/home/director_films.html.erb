@@ -1,13 +1,15 @@
 <div class="director">
-	<%= image_tag @director.img_url, alt: @director.name, :class => 'director-img' %></br>
+	<%= image_tag @director.img_url || "https://via.placeholder.com/180x275?text=#{@director.name}", alt: @director.name, :class => 'director-img' %></br>
 	<%= content_tag :p, @director.name, :class => "lead director-link" %>
 	<strong><mark><%= @films.length %> Films</mark></strong>
 </div>
 </br>
 </br>
+<ul class="director-list">
 <% @films.each do |film| %>
-	<div class="director director-list">
+	<div class="director">
 		<%= image_tag film.poster_img_url, alt: film.title, :class => 'director-img' %></br>
-		<%= content_tag :p, film.title, :class => "lead director-link" %>
+		<%= link_to film.title, "https://letterboxd.com#{film.slug}", :class => "lead director-link", :target => "_blank", :rel => "noopener noreferrer" %>
 	</div>
 <% end %>
+</ul>

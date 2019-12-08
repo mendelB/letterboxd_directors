@@ -11,9 +11,14 @@
 }
 
 .director-list {
-	float: left;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
 }
 
 .director-link {
+	text-align: center;
+}
+
+.directors-header {
 	text-align: center;
 }
