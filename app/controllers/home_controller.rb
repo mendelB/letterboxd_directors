@@ -5,11 +5,11 @@ class HomeController < ApplicationController
 
   def fetch_directors
     user = User.find_or_create_by({username: params[:username]})
-  	CSVHandler.scrape_legacy(user)
 
     cache_id = SecureRandom.random_number(1_000_000)
     Rails.cache.write(cache_id, user)
     session[:cache_id] = cache_id
+  	LetterboxdScraper.scrape_films(user)
 
   	redirect_to action: 'directors', username: user.username
   end
