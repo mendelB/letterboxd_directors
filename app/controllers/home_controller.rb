@@ -14,6 +14,7 @@ class HomeController < ApplicationController
     if @user = User.find_by({username: params[:username]})
       directors = @user.directors.uniq
       if directors
+        # @TODO: Clean this up into a model method.
         @directors = directors.map do |director| 
           { director: director, films: director.user_films(@user) } 
         end.sort_by { |director_obj| director_obj[:films].length }.reverse
