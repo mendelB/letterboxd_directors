@@ -14,6 +14,14 @@ class LetterboxdScraper
 		end
 	end
 
+	def self.was_parsed?(film, user)
+		 self.get_slug(film) === user.last_added 
+	end
+
+	def self.get_slug(film)
+		film.attributes['data-film-slug'].value
+	end
+
 	def self.scrape_films(user)
 		username = user.username
 
@@ -22,13 +30,7 @@ class LetterboxdScraper
 		
 		return if !films_by_date_page
 
-		most_recently_logged_film = films_by_date_page.css('.poster-list li div')[0].attributes['data-film-slug'].value
-
-		if most_recently_logged_film === user.last_added
-			return user
-		else
-			user.last_added = most_recently_logged_film
-		end
+		most_recently_logged_film = get_slug(films_by_date_page.css('.poster-list li div')[0])
 
 		# Grab the final page number in the pagination list, so we know how many pages to run through.
 		# If they've only got one page of films (😢), we'll default to 1 since there won't be pagination.
@@ -49,6 +51,11 @@ class LetterboxdScraper
 
 			# For each film in the list:
 			page.css('.poster-list li div').each.with_index(1) do |poster, index|
+				if was_parsed?(poster, user)
+					user.last_added = most_recently_logged_film
+					user.save
+					return user
+				end
 				current_film_index = (i * amount_of_films_per_page) + index
 				p "Parsing #{current_film_index} of  ~#{total_logged_film_count}"
 
@@ -95,6 +102,7 @@ class LetterboxdScraper
 			end
 		end
 
+		user.last_added = most_recently_logged_film
 		user.save
 		return user
 	end
